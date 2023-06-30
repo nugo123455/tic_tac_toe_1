@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head><title>Tic Tac Toe</title></head>
+  <style>
+  body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f6f6f6;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  color: #777;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+td {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle;
+  border: none;
+  font-size: 48px;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+td:hover {
+  background-color: #f2f2f2;
+}
+
+td.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button[name="reset"] {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[name="reset"]:hover {
+  background-color: #ff3333;
+}
+  </style>
+  <body>
+    <h1>Tic Tac Toe</h1>
+    <h2>{{msg}}</h2>
+    <form action="" method="POST">
+      <table>
+        {% for j in range(0, 3) %}
+        <tr>
+          {% for i in range(0, 3) %}
+          <td>
+            <button type="submit" name="choice" value="{{j*3+i+1}}"
+             {{"disabled" if ttt.spot_string(i, j) != "_" or ttt.is_over()}}>
+              {{ttt.spot_string(i, j)}}
+            </button>
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+      <button type="submit" name="reset">Start Over</button>
+    </form>
+  </body>
+</html>
